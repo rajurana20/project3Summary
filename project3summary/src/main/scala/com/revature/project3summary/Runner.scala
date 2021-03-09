@@ -41,15 +41,8 @@ object Runner {
 
     //Read WET data from the Common Crawl s3 bucket
     //Since WET is read in as one long text file, use lineSep to split on each header of WET record
-    val fileName = "s3a://rajusecondbucket/crawlresult/"
+    val fileName = "s3a://output-bucket-revusf-tyler2/crawl-data/"
 
-    case class CrawlResult (
-        fileName:StringType,
-        totalTechJob:Long,
-        totalEntryLevelTechJob:Long,
-        totalEntryLevelTechJobRequiredExperience: Long,
-        percentage: Double
-    ){}
     println("--------------Summary Table---------------")
     val commonCrawl = spark.read.option("delimiter",",").csv(fileName)
     //.as[CrawlResult]
